@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: "docs"
-  }
+    outDir: "docs",
+  },
+  //  https://vitejs.dev/guide/static-deploy#github-pages
+  base: "/pretty-print-ai-rjson/"
 })
