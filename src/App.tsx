@@ -3,6 +3,22 @@ import { r, RecordNode, RT } from "@gmetrixr/ai-rjson";
 import StyledDropzone from "./Dropzone.tsx";
 import { Base, Uploader } from "./styles.tsx";
 import { useState } from "react";
+import j from "./j.json";
+
+function tolo() {
+  const groups: Record<string, any> = {};
+  for(const q of j) {
+    if(groups[q.game.slug]) {
+      groups[q.game.slug].push(q);
+    } else {
+      groups[q.game.slug] = [q];
+    }
+  }
+
+  console.log(groups);
+}
+
+tolo();
 
 function App() {
   const [prettyPrint, setPrettyPrint] = useState("");
@@ -28,7 +44,7 @@ function App() {
         prettyPrint ?
           <>
             <button onClick={reUpload}>RE-UPLOAD</button>
-          <pre>
+          <pre style={{textWrap: "pretty"}}>
             {prettyPrint}
           </pre>
           </> :
@@ -53,7 +69,9 @@ export function prettyPrintConceptsWithGames(brain: RecordNode<RT>, str = "", de
   for (const c of concepts) {
     const games = r.record(c).getRecords(RT.game);
     str += `
-    ${tabs(depth)} ${depth}. ${c.props.title} | ${c.props.relevance_score} | ${games.map(g => g.props.name).join(",")}`;
+    ${tabs(depth)} ${depth}. ${c.props.title} | ${c.props.relevance_score} | ${games.map(g => g.props.name).join(",")}
+    ${tabs(depth)} CONTENT: ${c.props.content}
+    `;
     str = prettyPrintConceptsWithGames(c, str, depth + 1);
   }
 
