@@ -3,9 +3,9 @@ import { r, RecordNode, RT } from "@gmetrixr/ai-rjson";
 import StyledDropzone from "./Dropzone.tsx";
 import { Base, Uploader } from "./styles.tsx";
 import { useState } from "react";
-import j from "./j.json";
+// import j from "./j.json";
 
-function tolo() {
+/*function tolo() {
   const groups: Record<string, any> = {};
   for(const q of j) {
     if(groups[q.game.slug]) {
@@ -18,7 +18,7 @@ function tolo() {
   console.log(groups);
 }
 
-tolo();
+tolo();*/
 
 function App() {
   const [prettyPrint, setPrettyPrint] = useState("");
